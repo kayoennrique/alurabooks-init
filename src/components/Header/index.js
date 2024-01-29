@@ -14,9 +14,8 @@ function Header() {
     return (
         <HeaderContainer>
             <Link to="/">
-
+                <Logo />
             </Link>
-            <Logo />
             <HeaderOptions />
             <HeaderIcons />
         </HeaderContainer>
