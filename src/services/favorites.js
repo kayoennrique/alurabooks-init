@@ -1,14 +1,23 @@
-import axios from "axios"
+import axios from "axios";
 
-const favoritesAPI = axios.create({ baseURL: "http://localhost:8000/favoritos" })
+const favoritesAPI = axios.create({ baseURL: "http://localhost:8000/favoritos" });
 
 async function getFavorites() {
-  const response = await favoritesAPI.get('/')
+  const response = await favoritesAPI.get('/');
 
-  return response.data
+  return response.data;
+}
 
+async function postFavorite(id) {
+  await favoritesAPI.post(`/${id}`);
+}
+
+async function deleteFavorite(id) {
+  await favoritesAPI.delete(`/${id}`);
 }
 
 export {
-  getFavorites
-}
+  getFavorites,
+  postFavorite,
+  deleteFavorite
+};
