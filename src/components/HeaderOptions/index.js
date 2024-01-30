@@ -17,7 +17,7 @@ const Options = styled.ul`
     display: flex;
 `;
 
-const optionsText = ['CATEGORIAS', 'FAVORITOS', 'ESTANTE'];
+const optionsText = ['CATEGORIAS', 'FAVORITES', 'ESTANTE'];
 
 function HeaderOptions() {
     return (

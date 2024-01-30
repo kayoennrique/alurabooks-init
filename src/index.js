@@ -25,6 +25,11 @@ const GlobalStyle = createGlobalStyle`
   li {
     list-style: none;    
   }
+
+  a {
+    text-decoration: none;
+    color: unset;
+  }
 `;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -34,7 +39,7 @@ root.render(
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/favoritos" element={<Favorites />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>

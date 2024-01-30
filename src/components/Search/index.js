@@ -2,6 +2,7 @@ import Input from '../Input';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { getBooks } from '../../services/books';
+import { postFavorite } from '../../services/favorites';
 
 const SearchContainer = styled.section`
     background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
@@ -47,15 +48,20 @@ const Result = styled.div`
 
 function Search() {
     const [booksResearched, setBooksResearched] = useState([]);
-    const [books, setBooks] = useState([]);
+    const [books, setBooks] = useState([])
+
+    const fetchBooks = async () => {
+        const books = await getBooks()
+        setBooks(books)
+    }
 
     useEffect(() => {
-        fetchBooks();
-    }, []);
+        fetchBooks()
+    }, [])
 
-    async function fetchBooks() {
-        const booksAPI = await getBooks();
-        setBooks(booksAPI);
+    function handleClickResult(id) {
+        postFavorite(id)
+        alert(`livro de id:${id} adicionado aos favoritos`)
     }
 
     return (
@@ -66,12 +72,12 @@ function Search() {
                 placeholder="Pesquise aqui sua próxima leitura"
                 onBlur={e => {
                     const textTyped = e.target.value
-                    const resultSearch = books.filter(book => book.name.includes(textTyped))
+                    const resultSearch = books.length ? books.filter(book => book.name.includes(textTyped)) : []
                     setBooksResearched(resultSearch);
                 }}
             />
             {booksResearched.map(book => (
-                <Result>
+                <Result onClick={() => handleClickResult(book.id)}>
                     <img src={book.src} />
                     <p>{book.name}</p>
                 </Result>
