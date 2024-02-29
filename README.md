@@ -6,13 +6,15 @@ App from a fictional book publisher.
 
 ByteBooks presents a catalog of technology books, with a search function and responsiveness for mobile devices.
 
+![bytebooks-final-project](./bytebooks-final-project.gif)
+
 ## ✔️ Techniques and technologies used
 
 To implement the project, the following techniques and technologies were used:
 
-- To react
-- Typed
-- Favorable wind
+- React
+- TypeScript
+- Tailwind
 - Identification of performance problems
   - Google Lighthouse extension
   - React.Profiler
@@ -23,11 +25,15 @@ To implement the project, the following techniques and technologies were used:
 - Rendering optimization
   - React.lazy
   - React.Suspense
-  - Property key
+  - Key property
 - Image and css optimization
   - Modern image formats (.webp, .avif)
-  - Property carrying the <img> tag
-  - Switching source of ownership
+  - loading property of the <img> tag
+  - font-swap property
+
+## 📁 Access to the project
+
+You can access [project source code](https://github.com/kayoennrique/alurabooks-init/tree/develop-4) or [download it](https://github.com/kayoennrique/alurabooks-init/archive/refs/heads/develop-4.zip).
 
 ## 🛠️ Open and run the project
 
@@ -36,3 +42,7 @@ After downloading the project, open the terminal in the project folder and run t
 Start the development server with `npm run dev`.
 
 Now go to your browser and access http://localhost:5173/ or the link that the Vite terminal indicates 🏆
+
+## 📚 More information
+
+For more information about this project, please contact the developer.
