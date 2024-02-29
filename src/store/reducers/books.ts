@@ -27,7 +27,7 @@ const initialState: BooksState = {
 
 const fetchBooks = createAsyncThunk('books/fetchItems', async () => {
 	const response: Book[] = await fetch(
-		'https://raw.githubusercontent.com/alura-cursos/bytebooks-assets/main/data.json'
+		'https://raw.githubusercontent.com/cicatriz-dev/bytebooks-assets/main/data.json'
 	)
 		.then((res) => res.json())
 		.then(sleep(1500));
@@ -43,11 +43,11 @@ export const booksSlice = createSlice({
 				item.title.toLowerCase().includes(action.payload.toLowerCase())
 			);
 		},
-		getBookById: (state, action) => {
-			state.selectedBook = state.books.find((item) => item.id === action.payload);
-		},
 		clearSelectedBook: (state) => {
 			state.selectedBook = undefined;
+		},
+		setSelectedBook: (state, action) => {
+			state.selectedBook = action.payload;
 		},
 	},
 	extraReducers: (builder) => {
@@ -66,7 +66,7 @@ export const booksSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 
-export const { filterItems } = booksSlice.actions;
+export const { filterItems, setSelectedBook } = booksSlice.actions;
 
 export { fetchBooks };
 
