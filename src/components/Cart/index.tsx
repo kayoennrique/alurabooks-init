@@ -7,7 +7,8 @@ type CartProps = {
 };
 
 const Cart: React.FC<CartProps> = ({ onClose }) => {
-	const { state: { books } } = useCart();
+	const { state: { books, cartTotal },
+	} = useCart();
 	return (
 		<div className='relative z-10'>
 			<div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity'></div>
@@ -34,6 +35,10 @@ const Cart: React.FC<CartProps> = ({ onClose }) => {
 											{books.map((book) => (
 												<CartItem key={book.id} book={book} />
 											))}
+											<div className='mt-4 flex justify-between'>
+												<h2 className='text-lg text-[#EB9B00] font-semibold'>Total da compra:</h2>
+												<h3 className='text-2xl font-bold'>R${cartTotal}</h3>
+											</div>
 										</>
 									)}
 								</div>
