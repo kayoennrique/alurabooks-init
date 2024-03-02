@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import React, { createContext, useContext, useMemo, useReducer } from 'react';
 
 export type Book = {
@@ -28,6 +29,7 @@ interface CartContextProps {
 		addToCart: (book: CartBook) => void;
 		removeBook: (book: CartBook) => void;
 		changeQuantity: (book: CartBook, quantity: number) => void;
+		resetCart: () => void;
 	};
 }
 
@@ -55,12 +57,14 @@ const cartReducer = (state: CartState, action: { type: string; payload?: any }):
 			return { ...state, books: newBook };
 		case 'CHANGE_QUANTITY':
 			const newBooks = state.books.map((book) => {
-				if (book.id = action.payload.id) {
+				if (book.id === action.payload.id) {
 					return { ...book, quantity: action.payload.quantity };
 				}
 				return book;
 			});
 			return { ...state, books: newBooks };
+		case 'RESET_CART':
+			return { ...state, books: [] };
 		default:
 			return state;
 	}
@@ -74,8 +78,8 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 	});
 
 	state.cartTotal = useMemo(() => {
-		return state.books.reduce((sum, book) => sum + book.price * book.quantity, 0).toFixed(2)
-	}, [state.books])
+		return state.books.reduce((sum, book) => sum + book.price * book.quantity, 0).toFixed(2);
+	}, [state.books]);
 
 	const actions = {
 		setIsCartOpen: (isOpen: boolean) => dispatch({ type: 'SET_IS_CART_OPEN', payload: isOpen }),
@@ -83,6 +87,7 @@ const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 		removeBook: (book: CartBook) => dispatch({ type: 'REMOVE_BOOK', payload: book }),
 		changeQuantity: (book: CartBook, quantity: number) =>
 			dispatch({ type: 'CHANGE_QUANTITY', payload: { ...book, quantity } }),
+		resetCart: () => dispatch({ type: 'RESET_CART' }),
 	};
 
 	return <CartContext.Provider value={{ state, actions }}>{children}</CartContext.Provider>;
