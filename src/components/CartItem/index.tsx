@@ -1,13 +1,15 @@
 import { memo } from 'react';
-import { CartBook, useCart } from '../../store/contexts/cart';
 import { MdAddCircle, MdDelete, MdOutlineRemoveCircle } from 'react-icons/md';
+import { CartBook, useCart } from '../../store/contexts/cart';
 
 type CartItemProps = {
 	book: CartBook;
 };
 
 const CartItemComponent: React.FC<CartItemProps> = ({ book }) => {
-	const { actions: { changeQuantity, removeBook } } = useCart()
+	const {
+		actions: { changeQuantity, removeBook },
+	} = useCart();
 	return (
 		<div className='flex items-start mt-2 pb-4 border-b border-[#002F52]'>
 			<img src={book.image} className='w-28 shadow-lg' />

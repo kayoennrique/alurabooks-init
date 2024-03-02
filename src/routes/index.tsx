@@ -7,7 +7,7 @@ import { AppContext } from '../store/app';
 import Order from '../pages/Order';
 
 export const Routes = () => (
-	<AppContext >
+	<AppContext>
 		<Header />
 		<Switch>
 			<Route exact path='/' component={Catalog} />

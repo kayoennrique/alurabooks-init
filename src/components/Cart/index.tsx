@@ -1,6 +1,6 @@
-import CartItem from '../CartItem';
 import { MdClose } from 'react-icons/md';
 import { useCart } from '../../store/contexts/cart';
+import CartItem from '../CartItem';
 import { useHistory } from 'react-router-dom';
 
 type CartProps = {
@@ -9,7 +9,9 @@ type CartProps = {
 
 const Cart: React.FC<CartProps> = ({ onClose }) => {
 	const navigation = useHistory();
-	const { state: { books, cartTotal },
+	const {
+		state: { books, cartTotal },
+		actions: { setIsCartOpen },
 	} = useCart();
 	return (
 		<div className='relative z-10'>
@@ -42,7 +44,13 @@ const Cart: React.FC<CartProps> = ({ onClose }) => {
 												<h3 className='text-2xl font-bold'>R${cartTotal}</h3>
 											</div>
 											<div className='mt-8'>
-												<button className='py-3 w-full bg-[#EB9B00] hover:opacity-80 rounded-md shadow-md' onClick={() => navigation.push('/order')}>
+												<button
+													className='py-3 w-full bg-[#EB9B00] hover:opacity-80 rounded-md shadow-md'
+													onClick={() => {
+														setIsCartOpen(false);
+														navigation.push('/order');
+													}}
+												>
 													<h3 className='text-white text-lg font-medium'>Finalizar Compra</h3>
 												</button>
 											</div>

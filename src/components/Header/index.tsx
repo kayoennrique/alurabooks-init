@@ -1,4 +1,5 @@
 import { MdOutlineShoppingBag } from 'react-icons/md';
+
 import Cart from '../Cart';
 import { memo } from 'react';
 import { useCart } from '../../store/contexts/cart';
