@@ -3,7 +3,7 @@ name: Lighthouse Check
 on:
   push:
     branches:
-      - main
+      - develop-5
 
 jobs:
   build:
